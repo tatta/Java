@@ -7,7 +7,8 @@
 public class Launcher {
 	/**
 	 * @param args
-	 *            args[0],args[1] contain the username and password for the
+	 *            args[0],args[1], args[2] contain the username,password and database 
+	 *            name used to create the
 	 *            database connection
 	 */
 	public static void main(String[] args) {
