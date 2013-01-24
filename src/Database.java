@@ -2,12 +2,13 @@ import java.sql.*;
 import java.util.ArrayList;
 
 /**
- * Handles the communication with the mysql database
+ * Handles the communication with the MySQL database
  * 
  */
 public class Database {
 	private Connection conn;
-	private Statement stmt;
+
+	// private Statement stmt;
 
 	public Database() {
 		this.conn = null;
@@ -21,12 +22,13 @@ public class Database {
 	 * @param passWord
 	 * @return true if a connection is established
 	 */
-	public boolean openConnection(String userName, String passWord, String database) {
+	public boolean openConnection(String userName, String passWord,
+			String database) {
 
 		try {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/"
-					+database , userName, passWord);
-			this.stmt = conn.createStatement();
+					+ database, userName, passWord);
+			// this.stmt = conn.createStatement();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -47,26 +49,26 @@ public class Database {
 		return conn != null;
 	}
 
-	public String[] getCategories() {
-		String sql = "select * from Kategoriat";
-		PreparedStatement ps;
-		int index = 0;
-		String[] kategories = new String[5];
-		try {
-			ps = conn.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			while (rs.next()) {
-				int id = rs.getInt("id");
-				String kategori = rs.getString("nimi");
-				kategories[index++] = kategori;
-			}
-			return kategories;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-
-	}
+	// public String[] getCategories() {
+	// String sql = "select * from Kategoriat";
+	// PreparedStatement ps;
+	// int index = 0;
+	// String[] kategories = new String[5];
+	// try {
+	// ps = conn.prepareStatement(sql);
+	// ResultSet rs = ps.executeQuery();
+	// while (rs.next()) {
+	// int id = rs.getInt("id");
+	// String kategori = rs.getString("nimi");
+	// kategories[index++] = kategori;
+	// }
+	// return kategories;
+	// } catch (SQLException e) {
+	// e.printStackTrace();
+	// }
+	// return null;
+	//
+	// }
 
 	/**
 	 * Prints all the words for a specific category, input represents the input
@@ -75,9 +77,9 @@ public class Database {
 	 * @param input
 	 * @return an ArrayList containing Word objects.
 	 */
-	public ArrayList<Word> printAllCategoryWords(int input) {
-		String sql = "select * from KategorinSanat,Sanat where id ='" + input
-				+ "'" + "" + "and KategorinSanat.sana=Sanat.infinitiv";
+	public ArrayList<Word> printAllWordsFor(int category) {
+		String sql = "select * from KategorinSanat,Sanat where id ='"
+				+ category + "'" + "and KategorinSanat.sana=Sanat.infinitiv";
 		PreparedStatement ps;
 		ArrayList<Word> list = new ArrayList<Word>();
 		try {
@@ -96,34 +98,34 @@ public class Database {
 		return null;
 
 	}
-	public boolean addWord(String suomeksi, String ruotsiksi, String infinitiv){
-		return false;
-	}
-	public boolean removeWord(String word){
-		return false;
-		
-	}
-	public boolean editWord(){
-		return false;
-	}
+
 	/************************************** DEBUG METHODS *************************************************************/
-	public void printAllRowsFromSanat() {
-		String sql = "select * from Sanat";
+	public void printAllRowsFrom(String table) {
+		String sql = "select * from" + "table";
 		PreparedStatement ps;
 		try {
 			ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				String infinitiv = rs.getString("infinitiv");
-				String suomeksi = rs.getString("suomeksi");
-				String ruotsiksi = rs.getString("ruotsiksi");
-				System.out.println(infinitiv + " \t\t " + suomeksi + "\t "
-						+ ruotsiksi);
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 	}
-	
+
+	public boolean addWord(String suomeksi, String ruotsiksi, String infinitiv) {
+		return false;
+	}
+
+	public boolean removeWord(String word) {
+		return false;
+
+	}
+
+	public boolean editWord() {
+		return false;
+	}
+
 }

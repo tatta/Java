@@ -6,11 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AddWordTest {
-	private String infinitiv;
-	private String suomeksi;
-	private String ruotsiksi;
-	
+public class EditWordTest {
+
 	@Before
 	public void setUp() throws Exception {
 	}
