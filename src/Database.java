@@ -7,8 +7,7 @@ import java.util.ArrayList;
  */
 public class Database {
 	private Connection conn;
-
-	// private Statement stmt;
+	private Statement stmt;
 
 	public Database() {
 		this.conn = null;
@@ -28,7 +27,7 @@ public class Database {
 		try {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/"
 					+ database, userName, passWord);
-			// this.stmt = conn.createStatement();
+			this.stmt = conn.createStatement();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
@@ -48,28 +47,25 @@ public class Database {
 	public boolean isConnected() {
 		return conn != null;
 	}
+	public boolean addWord(String word){
+		try {
+			 return stmt.executeUpdate("Insert into Sanat VALUES('"+word+"'"+","+"''"+","+"'');")==1;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	return false;
+	}
+	
+	public boolean removeWord(String word) {
+		try {
+			return stmt.executeUpdate("DELETE FROM Sanat WHERE infinitiv = '"+word+"';")==1;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 
-	// public String[] getCategories() {
-	// String sql = "select * from Kategoriat";
-	// PreparedStatement ps;
-	// int index = 0;
-	// String[] kategories = new String[5];
-	// try {
-	// ps = conn.prepareStatement(sql);
-	// ResultSet rs = ps.executeQuery();
-	// while (rs.next()) {
-	// int id = rs.getInt("id");
-	// String kategori = rs.getString("nimi");
-	// kategories[index++] = kategori;
-	// }
-	// return kategories;
-	// } catch (SQLException e) {
-	// e.printStackTrace();
-	// }
-	// return null;
-	//
-	// }
-
+	}
+	
 	/**
 	 * Prints all the words for a specific category, input represents the input
 	 * chosen from the drop down list
@@ -117,11 +113,6 @@ public class Database {
 
 	public boolean addWord(String suomeksi, String ruotsiksi, String infinitiv) {
 		return false;
-	}
-
-	public boolean removeWord(String word) {
-		return false;
-
 	}
 
 	public boolean editWord() {

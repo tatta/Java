@@ -14,7 +14,7 @@ public class View extends JFrame{
 	protected JButton removeBtn;
 	protected JButton editBtn;
 	protected String[] categories = {""};
-	protected JList<String> listOfWords;
+	protected JList<String> wordList;
 	
 	public View(){
 		final JPanel comboPanel = new JPanel();
@@ -25,11 +25,9 @@ public class View extends JFrame{
 		comboPanel.add(categoryDropDownList);
 
 		String[] words = { "Suomeksi Ruotsiksi Infinitiv" };
-
-		JPanel listPanel = new JPanel();
-		listPanel.setVisible(true);
-		listOfWords = new JList<String>(words);
-		listPanel.add(listOfWords);
+		setLayout(new BorderLayout());
+		
+		wordList = new JList<String>(words);
 		JPanel buttonPanel = new JPanel();
 		addBtn = new JButton("Add word");
 		removeBtn = new JButton("Remove word");
@@ -41,12 +39,12 @@ public class View extends JFrame{
 		
 		addWindowListener(new WindowHandler());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(600, 300);
+		setSize(350, 300);
 
 		add(comboPanel, BorderLayout.NORTH);
-		add(listPanel, BorderLayout.CENTER);
+		add(new JScrollPane(wordList));
 		add(buttonPanel, BorderLayout.SOUTH);
-
+		setResizable(false);
 		setTitle("Suomeksi");
 	}
 

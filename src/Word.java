@@ -13,9 +13,12 @@ public class Word {
 		this.infinitiv = infinitiv;
 
 	}
+	public String getInfinitiv(){
+		return infinitiv;
+	}
 
 	@Override
 	public String toString() {
-		return "" + suomeksi + " " + ruotsiksi + " " + infinitiv;
+		return suomeksi + ",  " + ruotsiksi + ",  " + infinitiv;
 	}
 }

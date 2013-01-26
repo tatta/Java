@@ -32,4 +32,10 @@ public class Model extends Observable {
 	public ArrayList<Word> getWordsFrom(int category) {
 		return db.printAllWordsFor(category);
 	}
+	public boolean addWord(String word){
+		return db.addWord(word);
+	}
+	public boolean removeWord(String word){
+		return db.removeWord(word);
+	}
 }

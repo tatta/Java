@@ -1,3 +1,8 @@
+import java.awt.EventQueue;
+
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 /**
  * Creates all the objects and opens a connection to the database
  * 
@@ -16,5 +21,19 @@ public class Launcher {
 		Model model = new Model(args);
 		View view = new View();
 		new Controller(model, view);
+
+//		EventQueue.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//                } 
+//                catch (ClassNotFoundException ex) {}
+//                catch (InstantiationException ex) {}
+//                catch (IllegalAccessException ex) {}
+//                catch (UnsupportedLookAndFeelException ex) {}
+//           }
+//		});   
+//		
 	}
 }
