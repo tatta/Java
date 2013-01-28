@@ -1,6 +1,8 @@
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.DefaultComboBoxModel;
@@ -21,7 +23,8 @@ public class Controller implements ActionListener, Observer {
 		this.view = view;
 		view.addBtn.addActionListener(this);
 		view.removeBtn.addActionListener(this);
-		view.editBtn.addActionListener(this);
+		//view.editBtn.addActionListener(this);
+		view.addWindowListener(new WindowHandler());
 		view.categoryDropDownList.addActionListener(this);
 		model.addObserver(this);
 		model.connect();
@@ -48,9 +51,9 @@ public class Controller implements ActionListener, Observer {
 			
 		
 		}	
-		else if (e.getSource() == view.editBtn){
-			System.out.println("Pressed edit");
-		}
+//		else if (e.getSource() == view.editBtn){
+//			System.out.println("Pressed edit");
+//		}
 		else {
 			JComboBox comboBox = (JComboBox) e.getSource();
 			int category = comboBox.getSelectedIndex();
@@ -65,5 +68,15 @@ public class Controller implements ActionListener, Observer {
 				(Object[]) arg));
 		view.setVisible(true);
 
+	}
+
+	class WindowHandler extends WindowAdapter {
+		/**
+		 * Called when the user exits the application.
+		 */
+		public void windowClosing(WindowEvent e) {
+			model.closeConnection();
+			System.exit(0);
+		}
 	}
 }

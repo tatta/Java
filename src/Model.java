@@ -28,7 +28,10 @@ public class Model extends Observable {
 			System.out.println("Could not connect to " + args[2]);
 		}
 	}
-
+	public void closeConnection(){
+		db.closeConnection();
+	}
+	
 	public ArrayList<Word> getWordsFrom(int category) {
 		return db.printAllWordsFor(category);
 	}

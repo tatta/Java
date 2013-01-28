@@ -37,8 +37,10 @@ public class Database {
 
 	public void closeConnection() {
 		try {
-			if (conn != null)
+			if (conn != null){
 				conn.close();
+				System.out.println("Closing connection");
+			}	
 		} catch (SQLException e) {
 		}
 		conn = null;

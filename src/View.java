@@ -12,7 +12,7 @@ public class View extends JFrame{
 	protected JComboBox<String> categoryDropDownList;
 	protected JButton addBtn;
 	protected JButton removeBtn;
-	protected JButton editBtn;
+	//protected JButton editBtn;
 	protected String[] categories = {""};
 	protected JList<String> wordList;
 	
@@ -31,13 +31,13 @@ public class View extends JFrame{
 		JPanel buttonPanel = new JPanel();
 		addBtn = new JButton("Add word");
 		removeBtn = new JButton("Remove word");
-		editBtn = new JButton("Edit word");
+		//editBtn = new JButton("Edit word");
 		
 		buttonPanel.add(addBtn);
 		buttonPanel.add(removeBtn);
-		buttonPanel.add(editBtn);
+		//buttonPanel.add(editBtn);
 		
-		addWindowListener(new WindowHandler());
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(350, 300);
 
@@ -47,15 +47,4 @@ public class View extends JFrame{
 		setResizable(false);
 		setTitle("Suomeksi");
 	}
-
-	
-	class WindowHandler extends WindowAdapter {
-		/**
-		 * Called when the user exits the application.
-		 */
-		public void windowClosing(WindowEvent e) {
-			System.exit(0);
-		}
-	}
-
 }
